@@ -80,14 +80,23 @@ body {
 .nav-menu a {
   color: var(--muted);
   text-decoration: none;
+  display: inline-block; /* transform 적용 위해 */
+  transform: translateY(0);
+  transition: color 120ms ease, transform 140ms ease;
+  will-change: transform;
 }
 .nav-menu a:hover {
-  color: #fff;
+  color: var(--text); /* 라이트/다크 모두 선명 */
+  transform: translateY(-3px);
+  background: transparent;
+}
+.nav-menu a:active {
+  transform: translateY(-1px);
 }
 
 /* 브랜드는 메뉴 다음(오른쪽) */
 .brand {
-  color: #fff;
+  color: var(--text);
   font-weight: 700;
   letter-spacing: 0.3px;
   text-decoration: none;
@@ -148,30 +157,70 @@ body {
   gap: 10px;
   flex-wrap: wrap;
 }
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  margin-right: 0.5em;
+}
 .btn {
   appearance: none;
-  border: 1px solid var(--border);
-  color: #fff;
+  border: 1px solid #000; /* 모노톤: 항상 블랙 테두리 */
+  color: var(--text); /* 글자색을 테마에 맞춤 (라이트/다크 모두 가독성 확보) */
   background: transparent;
   padding: 10px 14px;
   border-radius: 10px;
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, transform 0.06s ease-out;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease,
+    transform 100ms ease;
+  will-change: transform;
 }
 .btn:hover {
-  background: #1a1d29;
-  border-color: #2a2f3c;
+  background: #000; /* 호버 시 블랙 */
+  color: #fff; /* 글자 반전 */
+  border-color: #000;
+  transform: translateY(-3px);
 }
 .btn:active {
-  transform: translateY(1px);
+  transform: translateY(-1px); /* 클릭 시 살짝 줄여서 촉감 */
 }
+/* 프라이머리 버튼은 기본이 블랙 배경/화이트 글자 */
 .btn.primary {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: #000;
+  color: #fff;
+  border-color: #000;
 }
 .btn.primary:hover {
-  background: var(--primary-600);
-  border-color: var(--primary-600);
+  background: #fff; /* 호버 때 반전 */
+  color: #000;
+  border-color: #000;
+}
+/* 접근성: 키보드 포커스 가시성 */
+.btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+@media (prefers-color-scheme: light) {
+  .btn:focus-visible {
+    outline: 2px solid #000;
+  }
+}
+/* 모션 최소화 존중 */
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+  }
+  .btn:hover,
+  .btn:active {
+    transform: none;
+  }
+  .nav-menu a {
+    transition: color 120ms ease;
+  }
+  .nav-menu a:hover,
+  .nav-menu a:active {
+    transform: none;
+  }
 }
 
 /* 공통 섹션 */
@@ -271,8 +320,9 @@ body {
     --primary: #5753ff;
     --primary-600: #433eff;
   }
-  .btn:hover {
-    background: #f2f4f9;
-    border-color: #e0e4ef;
-  }
+}
+
+#copyright {
+  text-align: left;
+  margin-top: 20px;
 }
