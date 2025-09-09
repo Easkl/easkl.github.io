@@ -15,6 +15,7 @@
     />
     <meta property="og:type" content="website" />
     <link rel="stylesheet" href="styles/styles.css" />
+    <script src="js/config.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -182,13 +183,13 @@
         <h2>Experience</h2>
         <article class="item">
           <header>
-            <h3>Awesome Corp · Frontend Engineer</h3>
-            <div class="meta">2022.01 – 현재 · 서울</div>
+            <h3>TETR.IO UX/UI DESIGNER</h3>
+            <div class="meta">2022.03 – 2022.07</div>
           </header>
           <ul>
-            <li>디자인 시스템 구축, 공통 컴포넌트 30% 재사용률 향상</li>
-            <li>번들 최적화로 LCP 38% 개선</li>
-            <li>접근성 점수 WCAG AA 달성</li>
+            <li>TETR.IO season2 quick play full stack development</li>
+            <li>bug bounty backtest</li>
+            <li>and more...</li>
           </ul>
         </article>
         <article class="item">
@@ -373,19 +374,5 @@
           <p>This work is licensed under CC0 1.0 Universal. To the extent possible under law, the author has waived all copyright and related or neighboring rights to this work. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.</p>
       </div>
     </footer>
-
-    <script>
-      const toggleBtn = document.querySelector(".nav-toggle");
-      const menu = document.getElementById("nav-menu");
-      toggleBtn?.addEventListener("click", () => {
-        const expanded = toggleBtn.getAttribute("aria-expanded") === "true";
-        toggleBtn.setAttribute("aria-expanded", String(!expanded));
-        menu.classList.toggle("open");
-      });
-
-      document.getElementById("year").textContent = String(
-        new Date().getFullYear()
-      );
-    </script>
   </body>
 </html>
